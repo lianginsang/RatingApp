@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%= success %>
+    <%= error %>
+    <head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MQCW3Y2V0X"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-MQCW3Y2V0X');
+</script>
+        <link rel="stylesheet" href="../mainStyle.css">
+        <link rel="stylesheet" href="../navbarstyle.css">
+        <link rel="stylesheet" href="../homeStyle.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">    
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Tispur</title>
+        <link rel="icon" type="image/png" href="../favicon.png">
+    </head>
+        <body>
+                <%- include('partials/navbar') %>
+                <section id="sectionAll">
+                <section id="sectionPost">
+                <section id="makePost">
+                    <div id="makeUser">
+                        <% if(username != 'U2ZTc5N2ZlZTczXkEyXkFqcGdeQXVyODYyMDgz'){ %> 
+                            <a href="/profile/<%= username %> ">
+                                <%= username %> 
+                            </a>
+                        <% }else{ %> 
+                            <a href="/register">Guest</a>
+                        <% } %> 
+                    </div>
+                    <div id="makeSubmit">
+                        <form action="/submit/post">
+                            <button>
+                                <textarea name="submit" id="submit" cols="40" rows="1" placeholder="Create a Post..."></textarea>
+                            </button>
+                        </form>
+                    </div>
+
+                    <div class="guidelines" id="guidelineDiv">
+                        <div class="guidelines" id="guideline" onclick="">Guidelines</div>
+                        <div class="guidelines" id="guidelineDropDown">
+                                <p>
+                                    1. No harassment of any sort
+                                </p>
+                                <p>
+                                    2. No Spamming or double posting
+                                </p>
+                                <p>
+                                    3. Stay respectful of everyone's opinions
+                                </p>
+                                <p>
+                                    4. Post relevant content only
+                                </p>
+                        </div>
+                    </div>
+                </section>
+
+                    <ul>
+                        <% for(let post of posts){ %> 
+                            <section>
+                            <li id="posts">
+                                <div id="postDetails">
+                                    <p>
+                                        Posted By: <a href="/profile/<%= post.user.username %> ">
+                                            <%= post.user.username %> 
+                                        </a>
+                                    </p>
+                                    <p>
+                                        Topic: <strong><%= post.postSubject %></strong>
+                                    </p>
+                                    <p id="postBody">
+                                        <%= post.postBody %> 
+                                    </p>
+                                    <p>
+                                        Posted: <%= post.date.toString().substring(0,15) %> 
+                                    </p>
+                                    <form action="/submit/<%= post._id %>/reply">
+                                        <button>
+                                        <textarea name="reply" id="reply" cols="30" rows="1" placeholder="<%= post.replies.length %> replies..."></textarea>
+                                        </button>
+                                    </form>
+                                </div>
+                                <div id="postImage">
+                                    <p>
+                                        <% if(post.img && post.img != null){ %> 
+                                            <img src="<%= post.img %>" alt="N/A">
+                                        <% } %>  
+                                    </p>
+                                    <p>
+                                        <% if(post.title && post.title != null){ %> 
+                                            Title: <strong><a href='/search/<%= post.mediaID %>/<%= post.mediaType %>/<%= post.title %>'><%= post.title %></a></strong>
+                                        <% } %>  
+                                    </p>                    
+                                    <p>
+                                        <% if(post.mediaType && post.mediaType != null){ %> 
+                                            Type: <%= post.mediaType.toUpperCase() %>
+                                        <% } %>  
+                                    </p>                                        
+                                </div>
+                            </li>
+                        </section>
+                        <% } %> 
+                    </ul>
+                    <section id="page">
+                        <div class="footerLinks">
+                            Page: <%= page %>
+                        </div>
+                        <div id="pageForm">
+                            <form action="/<%= parseInt(page) - 1 %>">
+                                <button type="submit">back</button>
+                            </form>
+                            <form action="/<%= parseInt(page) + 1 %>">
+                                <button type="submit">next</button>
+                            </form>
+                        </div>
+                        <div class="footerLinks">
+                            Contacts
+                        </div>
+                        <div class="footerLinks">
+                            About
+                        </div>
+                        <div class="footerLinks">
+                            FAQs
+                        </div>
+                    </section>
+                </section>
+
+
+                <section id="sectionPopular">
+                <div id="popularTab">
+                    <strong>Popular Titles</strong>
+                </div>
+                <div id="olDiv">
+                    <% if(popularTitles && popularTitles != null){ %> 
+                    <ol type="1">
+                        <% let i = 0 %> 
+                    <% for(title of popularTitles){ %> 
+                        <li id="popularTitle">
+                            <% i++ %> 
+                            <div>
+                                <%= i %>. 
+                            </div>
+                            <div id="imageDiv">
+                                <p>
+                                    <img src="<%= title.img %>" alt="N/A">
+                                </p>
+                            </div>
+                            <div id="ratingDiv">
+                                <p>
+                                    Title:
+                                </p>
+                                <p>
+                                    <strong><a href='/search/<%= title.mediaID %>/<%= title.mediaType %>/<%= title.title %>'><%= title.title %></a></strong>
+                                </p>
+                                <p>
+                                    <%= title.mediaType.toUpperCase() %> 
+                                </p>
+                                <p>
+                                    <%= title.avgRating %>/10
+                                </p>
+                            </div>
+                        </li>
+                    <% } %> 
+                    </ol>
+                    <% } %> 
+                </div>
+                </section>
+                </section>
+        </body>
+        <footer>
+            <script src="../../script.js"></script>
+        </footer>
+</html>

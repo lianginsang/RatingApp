@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<%= success %>
+<%= error %>
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MQCW3Y2V0X"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-MQCW3Y2V0X');
+</script>
+        <link rel="stylesheet" href="/../../mainStyle.css">
+        <link rel="stylesheet" href="/../../navbarstyle.css">
+        <link rel="stylesheet" href="/../../profileStyle.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">    
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Tispur</title>
+        <link rel="icon" type="image/png" href="../favicon.png">
+</head>
+        <body>
+            <%- include('../partials/navbar') %>
+            <section id="profileTitle">
+            <section id="title">
+            <ul>
+                <% for(let review of userReviews.reviews.reverse()){ %> 
+                    <li>
+                        <div class="profileBlock">
+                            <p>
+                                <img src="<%= review.img %> " alt="N/A">
+                            </p>
+                        </div>
+                        <div class="profileBlock">
+                            <p>
+                                <%= review.title %> 
+                            </p>
+                            <p>
+                                <strong>Type: </strong>
+                                <%= review.mediaType.toUpperCase() %> 
+                            </p>
+                            <p>
+                                <strong>Rating:</strong>
+                                <%= review.rating %> 
+                            </p>
+                            <p>
+                                <strong>Review:</strong>
+                                <%= review.review %> 
+                            </p>
+                            <p>
+                                <a href="/search/<%= review.mediaID %>/<%= review.mediaType %>/<%= review.title %>" class="button">
+                                    More Details
+                                </a>
+                            </p>
+                            <% if(username == userReviews.user){ %> 
+                            <p>
+                                <div id="review">
+                                    <strong>Rate:</strong>
+                                    <form action="/edit/<%= review.mediaID %>/<%= review.title %>/<%= encodeURIComponent(review.img) %>/<%= review.mediaType %>" method="POST">
+                                        <span>
+                                        <select name="rating" id="rating">
+                                            <option value="<%= review.rating %>"><%= review.rating %></option>
+                                            <option value="1">1</option>
+                                            <option value="1.5">1.5</option>
+                                            <option value="2">2</option>
+                                            <option value="2.5">2.5</option>
+                                            <option value="3">3</option>
+                                            <option value="3.5">3.5</option>
+                                            <option value="4">4</option>
+                                            <option value="4.5">4.5</option>
+                                            <option value="5">5</option>
+                                            <option value="5.5">5.5</option>
+                                            <option value="6">6</option>
+                                            <option value="6.5">6.5</option>
+                                            <option value="7">7</option>
+                                            <option value="7.5">7.5</option>
+                                            <option value="8">8</option>
+                                            <option value="8.5">8.5</option>
+                                            <option value="9">9</option>
+                                            <option value="9.5">9.5</option>
+                                            <option value="10">10</option>
+                                        </select>
+                                        <textarea name="review" id="review" cols="20" rows="2" placeholder="Type your review here..." required><%= review.review %></textarea>
+                                        </span>
+                                        <button>Edit</button>
+                                    </form>
+                                </div>
+                                </p>
+                                <p>
+                                    <form action="/delete/<%= review.mediaID %>/<%= review.title %>/<%= review.mediaType %>/<%= username %>?_method=DELETE" method="POST">
+                                        <button>DELETE</button>
+                                    </form>
+                                </p>    
+                                <p>
+                                    Last Updated: <%= review.date.toString().substring(0, 15) %> 
+                                </p>
+                            <% } %> 
+                        </div>
+                    </li>
+                <% } %> 
+            </ul>
+            </section>
+            <section id="sectionProfile">
+                <div>
+                    <button ondblclick="alert('Profile Has Been Saved to Clipboard')" onclick="navigator.clipboard.writeText('/profile/<%= username %>')">Share Profile</button>
+                </div>
+                <div id="profileTab">
+                    <strong>User: </strong><%= username %>
+                </div>
+                <div>
+                    <% let averageArray = []; %>
+                    <% for (let review of userReviews.reviews) { %>
+                        <% averageArray.push(review.rating); %>
+                    <% } %>
+                    <% let sum = 0, i = 0; %>
+                    <% while (i < averageArray.length) { %>
+                        <% sum = sum + averageArray[i++]; %>
+                    <% } %>
+                    <% averageRating = Math.round(((sum / averageArray.length) + Number.EPSILON) * 100) / 100; %>
+                    <p>Average Rate: <%= averageRating %></p>            
+                </div>
+            </section>
+            </section>
+</body>
+<footer>
+    <script src="../../script.js"></script>
+</footer>
+</html>

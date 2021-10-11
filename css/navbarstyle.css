@@ -1,0 +1,233 @@
+
+header {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    background-color: rgb(30, 32, 33);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 999;
+    scroll-padding: 1rem 0 0 0;
+}
+nav{
+   display: flex;
+   flex-direction: column;
+   align-items: center; 
+   border-style: solid;
+   border-width: thin;
+   border-color: rgb(87, 87, 87);
+}
+#mobileNav{
+    display: none;
+}
+#mainNav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    height: auto;
+    background-color: rgb(30, 32, 33);
+    padding: 1rem;
+    width: 80%;
+    height: auto;
+}
+#logoDiv a:hover{
+    background-color: whitesmoke;
+    color: black;
+}
+#logoDiv a{
+    background-color: rgb(30, 32, 33);    
+    color: whitesmoke;
+    font-weight: bolder;
+    font-size: x-large;
+    padding: .3rem;
+    border-radius: 5px;
+    border-style: solid;
+    border-width: thin;
+    border-color: rgb(87, 87, 87);
+}
+#mainNav form {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+#mainNav form div {
+    background-color: rgb(30, 32, 33);
+}
+#dropDown select{
+    padding: .2rem;
+    border-radius: 7px;
+    border-style: solid;
+    border-width: thin;
+    border-color: rgb(87, 87, 87);
+    margin: 0 5px 0 0;
+    background-color: whitesmoke;
+}
+#searchBox input{
+    padding: .2rem;
+    border-radius: 7px;
+    border-style: solid;
+    border-width: thin;
+    border-color: rgb(87, 87, 87);
+    background-color: whitesmoke;
+}
+#searchBox button{
+    background-color: rgb(30, 32, 33);}
+#searchBox button:hover{
+    cursor: pointer;
+}
+#searchBox button i{
+    padding: .3rem;
+    border-radius: 7px;
+    border-style: solid;
+    border-width: thin;
+    border-color: rgb(87, 87, 87);
+    background-color: whitesmoke;
+}
+#profileDropDown {
+    display: none;
+    position: absolute;
+}
+#profileDropDown a {
+    padding: .3rem .1rem .3rem .1rem;
+}
+#profileDropDown a:hover {
+    color: black;
+    background-color: whitesmoke;
+}
+.profileDiv{
+    background-color: rgb(30, 32, 33);
+}
+.profileDiv a{
+    background-color: rgb(30, 32, 33);    
+    color: whitesmoke;
+    font-weight: bold;
+    font-size: large;
+    border-radius: 4px;
+}
+.profileDiv:hover{
+    background-color: whitesmoke;
+    color: black;
+}
+.profileDiv a:hover{
+    background-color: whitesmoke;
+    color: black;
+}
+#profile{
+    display: flex;
+    justify-content: flex-start;
+    padding: .2rem .4rem;
+    border-radius: 2px;
+    border-style: solid;
+    border-width: thin;
+    border-color: rgb(87, 87, 87);
+}
+.profileDiv:hover #profileDropDown{
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    border-style: solid;
+    border-width: thin;
+    border-color: rgb(87, 87, 87);
+}
+
+@media (max-width:900px){
+    #mainNav{
+        display: none;
+    }
+    .navbar-links{
+        display: none;
+    }
+    .navbar-links.active {
+        display: flex;
+    }
+    nav{
+        width: 100%;
+    }
+    #mobileNav{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    #logoDiv a{
+    background-color: rgb(30, 32, 33);    
+    color: whitesmoke;
+    font-weight: normal;
+    font-size: medium;
+    padding: .3rem;
+    margin: .2rem .4rem;
+    border-radius: 5px;
+    border-style: solid;
+    border-width: thin;
+    border-color: rgb(87, 87, 87);
+    }
+    #mobileNavbar{
+        width: auto;
+        height: 43px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    #topRow{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin: .4rem 0 0 0;
+    }
+    #navOption{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+    #profile p{
+        margin: 0 .7rem;
+        padding: .35rem 0;
+        border-radius: 9%;
+    }
+    #profile{
+        padding: 0;
+        margin: 0
+    }
+    .profileDiv:hover{
+        background-color: rgb(87, 87, 87) !important;  
+        color: black;
+    }
+    .profileDiv a:hover{
+        background-color: rgb(87, 87, 87) !important;  
+        color: black;
+    }
+    .toggle-button{
+        margin: 0 .7rem;
+        border-style: solid;
+        border-width: thin;
+        border-color: rgb(87, 87, 87);  
+        padding: .35rem;
+        height: 50%;
+        width: 50%;
+        border-radius: 15%;
+    }
+    #mobileNavbar section{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+    #mobileSearch form{
+        display: flex;
+        flex-direction: column;
+        margin: 0 0 0 .4rem;
+    }
+    .navbar-links{
+        background-color: rgb(30, 32, 33);    
+        border-style: solid;
+        border-width: thin;
+        border-color: rgb(87, 87, 87);   
+        border-radius: 0 0 9px 9px; 
+        margin: .4rem 0 0 0;
+        padding: 1.5rem 0;
+        width: 100%;
+        height: auto;
+    }
+}

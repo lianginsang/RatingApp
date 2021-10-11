@@ -1,0 +1,95 @@
+<header>
+    <nav>
+        <section id="mainNav">
+            <div class="logo" id="logoDiv">
+                <a href="/" class="logo">Tispur</a>
+            </div>
+            <form action="/search" method='POST' id="movieForm">
+                <div id="dropDown">
+                    <label for="mediaType"></label>
+                    <select name="mediaType" id="mediaType" class="mediaType">
+                        <option value="movie">Movie</option>
+                        <option value="book">Book</option>
+                        <option value="anime">Anime</option>
+                        <option value="manga">Manga</option>
+                    </select>
+                </div>
+                <div id="searchBox">
+                    <input type="text" size="50" name="searchTerm" id="searchTerm" placeholder="Search..." required>
+                    <input type="text" size="5" name="year" id="year" placeholder="Year" ondblclick="alert('If You are searching books, year will not work, use authors name')">
+                    <button><i class="fa fa-search"></i></button>
+                </div>
+            </form>
+            <div class="profileDiv">
+                <div id="profile" class="profileDiv">
+                    <% if(!currentUser){ %> 
+                        <a href="/login">Profile</a>
+                    <% }else{ %> 
+                        <a href="/profile/self">Profile</a>
+                    <% } %> 
+                </div>
+                <div class="profileDiv" id="profileDropDown">
+                    <% if(!currentUser){ %>
+                        <a href="/login">Login</a>
+                        <a href="/register">Sign Up</a>
+                        <% }else{ %>
+                            <a href="/logout">Logout</a>
+                            <% } %>
+                </div>
+            </div>
+        </section>
+
+        <section id="mobileNav">
+            <span id="mobileNavbar">
+                <div id="topRow">
+                    <div class="logo" id="logoDiv">
+                        <a href="/" class="logo">Tispur</a>
+                    </div>
+                    <div id="navOption">
+                        <div class="profileDiv">
+                            <div id="profile" class="profileDiv" onclick="">
+                                <% if(!currentUser){ %> 
+                                    <p>Profile</p>
+                                <% }else{ %> 
+                                    <p>Profile</p>
+                                <% } %> 
+                            </div>
+                            <div class="profileDiv" id="profileDropDown">
+                                <% if(!currentUser){ %>
+                                    <a href="/login">Login</a>
+                                    <a href="/register">Sign Up</a>
+                                    <% }else{ %>
+                                        <a href="/profile/self">Profile</a>
+                                        <a href="/logout">Logout</a>
+                                        <% } %>
+                            </div>
+                        </div>
+                        <a href="#" class="toggle-button">
+                            <i class="fa fa-search"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="navbar-links">
+                    <span id="mobileSearch">
+                        <form action="/search" method='POST' id="movieForm">
+                            <div id="dropDown">
+                                <label for="mediaType"></label>
+                                <select name="mediaType" id="mediaType" class="mediaType">
+                                    <option value="movie">Movie</option>
+                                    <option value="book">Book</option>
+                                    <option value="anime">Anime</option>
+                                    <option value="manga">Manga</option>
+                                </select>
+                            </div>
+                            <div id="searchBox">
+                                <input type="text" size="50" name="searchTerm" id="searchTerm" placeholder="Search..." required>
+                                <input type="text" size="5" name="year" id="year" placeholder="Year" ondblclick="alert('If You are searching books, year will not work, use authors name')">
+                                <button><i class="fa fa-search"></i></button>
+                            </div>
+                        </form>
+                    </span>
+                </div>
+                </span>
+        </section>
+    </nav>
+</header>

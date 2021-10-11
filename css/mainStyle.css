@@ -1,0 +1,45 @@
+*{
+    padding: 0;
+    margin: 0;
+    border: 0;
+    text-decoration: none;
+    background-size: cover;
+    color: whitesmoke;
+}
+ul{
+    list-style-type: none;
+}
+html {
+    background: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ), url(../backgroundimage2.png) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 100%;
+    overflow: scroll;
+}
+body{
+    background: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ), url("backgroundimage.jpg") no-repeat center fixed;
+    background-size: cover;
+}
+form select{
+    color:black;
+}
+form input{
+    color: black;
+}
+form textarea{
+    color: black;
+}
+form button i{
+    color: black;
+}
+button:hover{
+    cursor: pointer;
+}
+.button:hover{
+    cursor: pointer;
+}
+select:hover{
+    cursor: pointer;
+}

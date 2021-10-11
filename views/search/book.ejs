@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<%= success %>
+<%= error %>
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MQCW3Y2V0X"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-MQCW3Y2V0X');
+</script>
+        <link rel="stylesheet" href="../../mainStyle.css">
+        <link rel="stylesheet" href="../../navbarstyle.css">
+        <link rel="stylesheet" href="../../searchStyle.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">    
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Tispur</title>
+        <link rel="icon" type="image/png" href="../favicon.png">
+</head>
+    <body>
+        <%- include('../partials/navbar') %>
+
+            <section id="movieResult">
+                    <ul>
+                        <% for(let result of book){ %>
+                            <li>
+                                <div>
+                                    <% if(result.volumeInfo.imageLinks != undefined || null) {%> 
+                                        <img src="<%= result.volumeInfo.imageLinks.thumbnail %>" alt="N/A">
+                                        <% }else{ %> 
+                                            * No Cover *
+                                        <% } %> 
+                                </div>
+                                <div>
+                                <p>
+                                    <%= result.volumeInfo.title %> (<%= result.volumeInfo.publishedDate %>)
+                                </p>
+                                <p>
+                                    <%= result.volumeInfo.authors %>
+                                </p>
+                                <p>
+                                    "<%= result.volumeInfo.subtitle %>"
+                                </p>
+                                <p class="button">
+                                    <a href="/search/<%= result.id %>/book/<%= result.volumeInfo.title %> ">
+                                        More Details
+                                    </a>
+                                </p>
+                                </div>
+                            </li>
+                            <% } %>
+                    </ul>
+            </section>
+
+
+    </body>
+    <footer>
+        <script src="../../script.js"></script>
+    </footer>
+
+</html>

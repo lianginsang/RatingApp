@@ -1,0 +1,23 @@
+section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+a{
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    margin: 5rem;
+    padding: 3rem;
+    background-color: rgb(24, 24, 24);
+    border-radius: 4px;
+    border-color: rgb(87, 87, 87);
+    border-style: solid;
+    border-width: thin;
+}
+div{
+    word-wrap: break-word;
+    margin: 1rem;
+}

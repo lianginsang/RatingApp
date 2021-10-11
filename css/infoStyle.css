@@ -1,0 +1,110 @@
+body{
+    background: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ), url("backgroundimage.jpg");
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#movieDetails{
+    margin: 7rem 0;
+    display: flex;
+    flex-direction: column;
+}
+ul{
+    list-style: disc !important;
+}
+#result{
+    padding: 2rem;
+    margin: 1rem;
+    background-color: rgb(25, 23, 43) !important;
+    opacity: .95;
+    border-radius: 7px;
+    border-color: rgb(87, 87, 87);
+    border-style: solid;
+    border-width: thin;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+#movieDetails p{
+    margin: .5rem 0;
+}  
+#result img{
+    width: clamp(100px, 300px, 400px);
+    height: auto;
+}
+#result div{
+    padding: .5rem;
+    margin: 0 2rem;
+}
+#result div ul li{
+    margin: 0 0 0 2rem;
+}
+#review{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+#review div{
+    padding: 2rem;
+    margin: 1rem;
+    background-color: rgb(25, 23, 43) !important;
+    opacity: .95;
+    border-radius: 7px;
+    border-color: rgb(87, 87, 87);
+    border-style: solid;
+    border-width: thin;
+}
+#review form span{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+#review form{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+#movieDetails button{
+    background-color: black;
+    color: white;
+    padding: .2rem;
+    margin: .3rem 0;
+    border-radius: 4px;
+    border-color: rgb(87, 87, 87);
+    border-style: solid;
+    border-width: thin;
+}
+.button{
+    background-color: black;
+    color: white;
+    padding: .2rem;
+    margin: .3rem 0;
+    border-radius: 4px;
+    border-color: rgb(87, 87, 87);
+    border-style: solid;
+    border-width: thin;
+}
+#review textarea{
+    width: 70%;
+    height: auto;
+    padding: 0 1rem;
+    margin: 1rem;
+    border-radius: 7px;
+}
+#review select{
+    padding: .45rem;
+    border-radius: 7px;
+}
+#review span{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+@media (max-width: 900px){
+    #result{
+        flex-wrap: wrap;
+    }
+}

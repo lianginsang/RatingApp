@@ -1,0 +1,73 @@
+body{
+    background: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ), url("backgroundimage.jpg");
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#replyPage{
+    margin: 4rem 0;
+    width: 75%;
+    height: auto;
+}
+.postReply form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+#postReply{
+    margin: 0;
+    padding: 0;
+}
+#replyPage textarea{
+    width: 90%;
+    height: auto;
+    margin: .3rem;
+    border-radius: 4px;
+}
+#replyPage button{
+    background-color: black;
+    color: white;
+    padding: .5rem;
+    border-radius: 4px;
+    border-color: rgb(87, 87, 87);
+    border-style: solid;
+    border-width: thin;
+}
+.postReply{
+    margin: 1.5rem 0;
+    padding: 1rem;
+    border-radius: 7px;
+    border-color: rgb(87, 87, 87);
+    border-style: solid;
+    border-width: thin;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background-color: rgb(25, 23, 43) !important;
+    opacity: .95;
+}
+.postReply div{
+    margin: 1rem 0;
+}
+.postReply p{
+    margin: .8rem 0;
+}
+.postReply span{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.nameDate{
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+}
+
+@media (max-width:1050px){
+    .postReply span{
+        flex-wrap: wrap-reverse;
+    }
+}

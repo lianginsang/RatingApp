@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<%= success %>
+<%= error %>
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MQCW3Y2V0X"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-MQCW3Y2V0X');
+</script>
+    <link rel="stylesheet" href="../../replyStyle.css">
+    <link rel="stylesheet" href="../../mainStyle.css">
+    <link rel="stylesheet" href="../../navbarstyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">    
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post</title>
+    <link rel="icon" type="image/png" href="../favicon.png">
+</head>
+<body>
+    <%- include('../partials/navbar') %>
+    <section id="replyPage">
+    <section class="postReply">
+        <div class="nameDate">
+            <p>
+                <a href="/profile/<%= post.user.username %> ">
+                    <%= post.user.username %> 
+                </a>
+            </p>
+            <p>
+                <%= post.date.toString().substring(0,15) %> 
+            </p>
+        </div>
+        <span id="postDesc">
+            <div>
+            <% if(post.title){ %>
+                <p>
+                    Title: <%= post.title %> 
+                </p>
+                <p>
+                    Type: <%= post.mediaType.toUpperCase() %> 
+                </p>
+            <% } %>  
+                <p>
+                    Subject: <%= post.postSubject %> 
+                </p>
+                <p>
+                    Post: <%= post.postBody %> 
+                </p>
+                <p>
+                    <%= post.replies.length %> replies
+                </p>
+            </div>
+            <% if(post.img){ %> 
+            <div>
+                <img src="<%= post.img %> " alt="">
+            </div>
+            <% } %> 
+        </span>
+    </section>
+        <section class="postReply" id="postReply">
+            <div>
+                <form action="/submit/<%= post._id %>/reply/<%= username %>" method="POST">
+                <textarea name="reply" id="reply" cols="30" rows="2" placeholder="Write your reply here"></textarea>
+                <button>Post</button>
+                </form>
+            </div>
+        </section>
+                <ul>
+                    <% if(post.replies.length != 0){ %> 
+                        <% for(reply of post.replies){ %>
+                            <li>
+                            <section class="postReply">
+                                <div class="nameDate">
+                                    <p>
+                                        <a href="/profile/<%= reply.user %>">
+                                        <%= reply.user %> 
+                                        </a>
+                                    </p>
+                                    <p>
+                                        <%= post.date.toString().substring(0,15) %> 
+                                    </p>
+                                </div>
+                                <div>
+                                    <%= reply.reply %> 
+                                </div>
+                            </section>
+                            </li>
+                        <% } %> 
+                    <% } %>    
+                </ul>
+    </section>
+
+</body>
+<footer>
+    <script src="../../script.js"></script>
+</footer>
+</html>

@@ -1,0 +1,278 @@
+*{
+    text-decoration: none;
+    opacity: .999;
+    word-wrap: break-word;
+}
+strong a{
+    color: #3391ff !important;
+}
+strong a:hover{
+    color: rgb(130, 52, 255) !important;
+}
+#sectionAll{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 6rem 0 2rem 0;
+    z-index: 1;
+}
+#sectionPost{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 52%;
+    height: auto;
+    margin: 0 1rem;
+    z-index: 1;
+}
+#sectionPost section{ 
+    background-color: rgb(30, 32, 33);
+    padding: 1rem;
+    margin: 1rem;
+    border-color: rgb(87, 87, 87);
+    border-style: solid;
+    border-width: thin;
+    border-radius: 4px;
+    z-index: 1;
+}
+#sectionPost section img{
+    max-width: 128px;
+    height: auto;
+}
+#makePost{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+#makeUser{
+    width: 3em;
+}
+#makeSubmit textarea{
+    width: 25em;
+}
+@media (max-width:650px){
+    #makeSubmit textarea{
+        width: 15em;
+    }
+}
+@media (max-width:400px){
+    #makeSubmit textarea{
+        width: 10em;
+    }
+}
+#guidelineDiv{
+    width: 4em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+#guidelineDropDown {
+    display: none;
+    position: absolute;
+    margin: 1.8rem 0;
+    padding: .5rem;
+    border-style: solid;
+    border-width: thin;
+    border-color: rgb(87, 87, 87);
+    border-radius: 4px;
+    width: 10%;
+    height: auto;
+    z-index: 9 !important;
+}
+#guidelineDropDown a {
+    padding: .3rem .1rem .3rem .1rem;
+}
+#guideline{
+    padding: .2rem .4rem;
+    border-radius: 2px;
+    border-style: solid;
+    border-width: thin;
+    border-color: rgb(87, 87, 87);
+}
+.guidelines:hover #guidelineDropDown{
+    display: flex;
+    flex-direction: column;
+    border-style: solid;
+    border-width: thin;
+    border-color: rgb(87, 87, 87);
+}
+#sectionPost section{
+    margin: .5rem 0;
+    z-index: 1;
+}
+#sectionPost section div{
+    background-color: rgb(30, 32, 33);
+}
+#sectionPost form{
+    background-color: rgb(30, 32, 33);
+}
+#sectionPost form textarea{
+    background-color: whitesmoke;
+    border-color: rgb(87, 87, 87);
+    border-style: solid;
+    border-width: thin;
+    border-radius: 4px;
+}
+#sectionPost form textarea::placeholder{
+    color: black;
+}
+#sectionPost section div a{
+    background-color: rgb(30, 32, 33);
+    font-weight: bolder;
+    color: whitesmoke;
+}
+#sectionPost section div a:hover{
+    font-weight: 900;
+    color: violet;
+}
+#sectionPost section button{
+    background-color: rgb(30, 32, 33);
+}
+#sectionPost section p{
+    background-color: rgb(30, 32, 33);
+    padding: .2rem 0;
+}
+#sectionPost section strong{
+    background-color: rgb(30, 32, 33);
+}
+#posts{
+    background-color: inherit;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap-reverse;
+}
+#postDetails{
+    width: 23em;
+}
+#posts div{
+    background-color: inherit;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 0 .4rem;
+}
+#postImage{
+    display: flex;
+    flex-direction: column;
+    justify-content: start !important;
+    max-width: 25%;
+    height: auto;
+}
+#postBody{
+    margin: 0 0 0 1rem;
+    word-wrap: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+#page{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+#page div{
+    margin: 0 .3rem;
+}
+#pageForm{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+#pageForm form{
+    margin: 0 .5rem;
+}
+#pageForm button{
+    border-color: rgb(87, 87, 87);
+    border-style: solid;
+    border-width: thin;
+    border-radius: 4px;
+    padding: .2rem .3rem;
+}
+#sectionPopular{
+    background-color: rgb(30, 32, 33);
+    border-color: rgb(87, 87, 87);
+    border-style: solid;
+    border-width: thin;
+    border-radius: 4px;
+    width: 17%;
+    height: 80%;
+    overflow: auto;
+    padding: 1rem;
+    margin: .5rem 1rem;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+}
+#sectionPopular div{
+    background-color: rgb(30, 32, 33);
+    z-index: 1;
+    margin: 0 .2rem;
+}
+#sectionPopular img{
+    width: 80px;
+    height: auto;
+}
+#popularTab{
+    text-align: center;
+}
+#popularTitle{
+    margin: 1rem 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+#imageDiv img{
+    margin: 0 .4rem 0 0;
+}
+#ratingDiv{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+@media (max-width: 900px){
+    #sectionAll{
+        flex-direction: column-reverse;
+        align-items: center;
+        width: 100%;
+    }
+    #sectionPost{
+        width: 90%;
+    }
+    #sectionPopular{
+        width: 85%;
+    }
+    #sectionPopular ol{
+        display: flex;
+        flex-direction: row;
+    }
+    #popularTitle{
+        margin: 0;
+        word-wrap: break-word;
+        width: 14em;
+    }
+    #guidelineDropDown{
+        width: 30%;
+    }
+}
+@media (max-width: 400px){
+    #guideline{
+        font-size: .7rem;
+    }
+    #page div{
+        margin: 0 .25rem;
+    }
+    .footerLinks{
+        font-size: .7rem;
+    }
+    #pageForm form{
+        margin: 0 .2rem;
+    }
+    #pageForm button{
+        font-size: .8rem;
+    }
+}

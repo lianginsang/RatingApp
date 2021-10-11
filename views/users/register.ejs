@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%= error %>
+    <head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MQCW3Y2V0X"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-MQCW3Y2V0X');
+</script>
+        <link rel="stylesheet" href="../mainStyle.css">
+        <link rel="stylesheet" href="../userRouter.css">
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Tispur</title>
+        <link rel="icon" type="image/png" href="../favicon.png">
+    </head>
+    <body>
+    <section id="userRouter">
+        <h1>Register</h1>
+        <form action="/register" method="POST">
+            <div>
+                <label for="username">Username</label>
+                <input type="text" name="username" id="username" required>
+            </div>
+            <div>
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" required>
+            </div>
+            <div>
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" required>
+            </div>
+            <div>
+            <button>Register</button>
+            </div>
+        </form>
+    </section>
+    </body>
