@@ -238,7 +238,7 @@ app.post('/submit/:user/:mediaID/:title/:img/:mediaType', isLoggedIn, validatePo
     const newPost = new Post({
         mediaID: mediaID,
         title: title,
-        img: img,
+        img: 'https' + img.toString().substring(4),
         mediaType: mediaType,
         user: user,
         postSubject: subject,

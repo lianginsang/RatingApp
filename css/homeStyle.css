@@ -259,6 +259,11 @@ strong a:hover{
         width: 30%;
     }
 }
+@media (max-width: 615px){
+    #postImage{
+        flex-direction: row !important;
+    }
+}
 @media (max-width: 400px){
     #guideline{
         font-size: .7rem;

@@ -20,7 +20,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Tispurr</title>
+        <title>Tispur</title>
         <link rel="icon" type="image/png" href="../favicon.png">
     </head>
         <body>
@@ -90,21 +90,25 @@
                                     </form>
                                 </div>
                                 <div id="postImage">
-                                    <p>
-                                        <% if(post.img && post.img != null){ %> 
-                                            <img src="<%= post.img %>" alt="N/A">
-                                        <% } %>  
-                                    </p>
-                                    <p>
-                                        <% if(post.title && post.title != null){ %> 
-                                            Title: <strong><a href='/search/<%= post.mediaID %>/<%= post.mediaType %>/<%= post.title %>'><%= post.title %></a></strong>
-                                        <% } %>  
-                                    </p>                    
-                                    <p>
-                                        <% if(post.mediaType && post.mediaType != null){ %> 
-                                            Type: <%= post.mediaType.toUpperCase() %>
-                                        <% } %>  
-                                    </p>                                        
+                                    <div>
+                                        <p>
+                                            <% if(post.img && post.img != null){ %> 
+                                                <img src="<%= post.img %>" alt="N/A">
+                                            <% } %>  
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <p>
+                                            <% if(post.title && post.title != null){ %> 
+                                                Title: <strong><a href='/search/<%= post.mediaID %>/<%= post.mediaType %>/<%= post.title %>'><%= post.title %></a></strong>
+                                            <% } %>  
+                                        </p>                    
+                                        <p>
+                                            <% if(post.mediaType && post.mediaType != null){ %> 
+                                                Type: <%= post.mediaType.toUpperCase() %>
+                                            <% } %>  
+                                        </p> 
+                                    </div>                                       
                                 </div>
                             </li>
                         </section>
