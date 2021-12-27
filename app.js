@@ -494,15 +494,29 @@ app.post('/rate/:id/:title/:image', isLoggedIn, validateReview, catchAsync(async
             review: review,
             date: new Date()
         };
-        let reviewerSession = {
-            mediaID: id,
-            title: title,
-            img: 'https' + image.toString().substring(4),
-            mediaType: mediaType,
-            rating: rating,
-            review: review,
-            date: new Date()
-        };
+
+        if (image.toString().substring(0, 5) == 'https') {
+            reviewerSession = {
+                mediaID: id,
+                title: title,
+                img: image,
+                mediaType: mediaType,
+                rating: rating,
+                review: review,
+                date: new Date()
+            }
+        } else {
+            reviewerSession = {
+                mediaID: id,
+                title: title,
+                img: 'https' + image.toString().substring(4),
+                mediaType: mediaType,
+                rating: rating,
+                review: review,
+                date: new Date()
+            }
+        }
+
         if (reviewerUser == null || reviewerUser.length == 0) {
             reviewing = new Reviewer({
                 user: username,
@@ -515,14 +529,27 @@ app.post('/rate/:id/:title/:image', isLoggedIn, validateReview, catchAsync(async
         };
         await reviewing.save();
         if (reviewRate == null || reviewRate.length == 0) {
-            reviewRating = new Review({
-                mediaID: id,
-                title: title,
-                img: 'https' + image.toString().substring(4),
-                mediaType: mediaType,
-                avgRating: rating,
-                users: [reviewingUser]
-            })
+
+            if (image.toString().substring(0, 4) == 'http') {
+                reviewRating = new Review({
+                    mediaID: id,
+                    title: title,
+                    img: image,
+                    mediaType: mediaType,
+                    avgRating: rating,
+                    users: [reviewingUser]
+                })
+            } else {
+                reviewRating = new Review({
+                    mediaID: id,
+                    title: title,
+                    img: 'https' + image.toString().substring(4),
+                    mediaType: mediaType,
+                    avgRating: rating,
+                    users: [reviewingUser]
+                })
+            }
+
         } else {
             reviewRating = await Review.findOneAndUpdate({ "mediaID": id }, {
                 $push: { "users": reviewingUser }

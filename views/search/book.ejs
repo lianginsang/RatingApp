@@ -31,7 +31,7 @@
                             <li>
                                 <div>
                                     <% if(result.volumeInfo.imageLinks != undefined || null) {%> 
-                                        <img src="<%= result.volumeInfo.imageLinks.thumbnail %>" alt="N/A">
+                                        <img src="https<%= result.volumeInfo.imageLinks.thumbnail.toString().substring(4) %>" alt="N/A">
                                         <% }else{ %> 
                                             * No Cover *
                                         <% } %> 
