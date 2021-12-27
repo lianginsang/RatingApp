@@ -530,7 +530,7 @@ app.post('/rate/:id/:title/:image', isLoggedIn, validateReview, catchAsync(async
         await reviewing.save();
         if (reviewRate == null || reviewRate.length == 0) {
 
-            if (image.toString().substring(0, 4) == 'http') {
+            if (image.toString().substring(0, 4) == 'https') {
                 reviewRating = new Review({
                     mediaID: id,
                     title: title,
