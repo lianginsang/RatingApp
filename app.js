@@ -209,7 +209,6 @@ app.get('/:page?', catchAsync(async (req, res) => {
     }
     let posts = await Post.find().sort({ date: -1 }).skip(parseInt(page) * 10 - 10).limit(10);
     const popularTitles = await Review.find().sort({ avgRating: -1 }).limit(10);
-    console.log(popularTitles)
     if (posts != null || posts.length != 0) {
         res.render('search', { posts, username, popularTitles, page });
     } else {
