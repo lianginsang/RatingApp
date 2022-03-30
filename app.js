@@ -165,7 +165,7 @@ let searchAnimeManga = (searchTerm, mediaType) => {
 }
 //function will fetch data from movie api
 let searchMovie = (searchTerm, year) => {
-    return axios.request(`https://movie-database-imdb-alternative.p.rapidapi.com/?s=${searchTerm}&r=json&y=${year}&rapidapi-key=${process.env.rapidapiKey}`)
+    return axios.request(`https://movie-database-alternative.p.rapidapi.com/?s=${searchTerm}&r=json&y=${year}&rapidapi-key=${process.env.rapidapiKey}`)
         .then(res => {
             return res.data;
         }).catch(err => {
@@ -175,7 +175,7 @@ let searchMovie = (searchTerm, year) => {
 }
 //second search to searchMovie(), used imdbID and has more info on a movie
 let searchMovieByID = (id) => {
-    return axios.request(`https://movie-database-imdb-alternative.p.rapidapi.com/?r=json&i=${id}&rapidapi-key=${process.env.rapidapiKey}`)
+    return axios.request(`https://movie-database-alternative.p.rapidapi.com/?r=json&i=${id}&rapidapi-key=${process.env.rapidapiKey}`)
         .then(res => {
             return res.data;
         }).catch(err => {
