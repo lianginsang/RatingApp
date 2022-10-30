@@ -26,11 +26,11 @@
             <%- include('../partials/navbar') %>
                 <section id="movieDetails">
                     <% if(AnimeManga.request_cached='true' ){ %>
-                        <% for(let result of AnimeManga.results){ %>
-                            <% if(result.start_date==null && result.mal_id==id){ %>
+                        <% for(let result of AnimeManga){ %>
+                            <% if(result.aired.from==null && result.mal_id==id){ %>
                                 <section id="result">
                                 <div>
-                                    <img src="<%= result.image_url %> " alt="N/A">
+                                    <img src="<%= result.images.jpg.image_url %> " alt="N/A">
                                 </div>
                                 <div>
                                     <p>
@@ -49,7 +49,7 @@
                                     <% if( result.mal_id==id ) {%>
                                         <section id="result">
                                         <div>
-                                            <img src="<%= result.image_url %> " alt="N/A">
+                                            <img src="<%= result.images.jpg.image_url %> " alt="N/A">
                                         </div>
                                         <div>
                                             <p>
@@ -59,17 +59,17 @@
                                             </p>
                                             <p>
                                                 <strong>Aired: </strong>
-                                                <%= result.start_date.substring(0,4) %>
+                                                <%= result.aired.from.substring(0,4) %>
                                                     -
-                                                    <% if(result.end_date==null){%>
+                                                    <% if(result.aired.to==null){%>
                                                         Still Airing
-                                                        <% }else if(result.end_date.substring(0, 4)!=null){ %>
-                                                            <%= result.end_date.substring(0, 4) %>
+                                                        <% }else if(result.aired.to.substring(0,4)!=null){ %>
+                                                            <%= result.aired.to.substring(0,4) %>
                                                                 <% } %>
                                             </p>
                                             <p>
                                                 <% if(result.type=='Manga' ){ %>
-                                                    <% if(result.end_date==null) {%>
+                                                    <% if(result.aired.to==null) {%>
                                                         <strong>
                                                             Volumes:
                                                         </strong>Not Concluded<br>
@@ -83,7 +83,7 @@
                                                                 <%= result.chapters %>
                                                                     <% } %>
                                                                         <% }else if(result.type=='TV' ||'OVA'||'Music'||'Movie'){ %>
-                                                                            <% if(result.end_date==null) {%>
+                                                                            <% if(result.aired.to==null) {%>
                                                                                 <strong>
                                                                                     Episodes:
                                                                                 </strong>Not Concluded
@@ -117,15 +117,17 @@
                                                 </li>
                                             </ul>
                                             </p>
-                                            <p>
-                                                <strong>Summary: </strong>
-                                                <%= result.synopsis %>
-                                            </p>
+                                            <% if(result.synopsis !== null){ %>
+                                                <p>
+                                                    <strong>Summary: </strong>
+                                                    <%= result.synopsis %>
+                                                </p>
+                                            <% } %>
                                             <p>
                                                 <% if(result.type=='Manga' ){ %>
-                                                    <form action="/submit/<%= result.mal_id %>/<%= result.title %>/<%= encodeURIComponent(result.image_url) %>/manga">
+                                                    <form action="/submit/<%= result.mal_id %>/<%= result.title %>/<%= encodeURIComponent(result.images.jpg.image_url) %>/manga">
                                                 <% }else if(result.type=='TV' ||'OVA'||'Music'||'Movie'){ %>
-                                                    <form action="/submit/<%= result.mal_id %>/<%= result.title %>/<%= encodeURIComponent(result.image_url) %>/anime">
+                                                    <form action="/submit/<%= result.mal_id %>/<%= result.title %>/<%= encodeURIComponent(result.images.jpg.image_url) %>/anime">
                                                 <% } %> 
                                                     <button>
                                                         Make Post
@@ -148,9 +150,9 @@
                 <section id="review">
                         <div>
                             <strong>Rate:</strong>
-                            <% for(let result of AnimeManga.results){ %>
+                            <% for(let result of AnimeManga){ %>
                             <% if( result.mal_id==id ) {%>
-                            <form action="/rate/<%= result.mal_id %>/<%= result.title %>/<%= encodeURIComponent(result.image_url) %>" method="POST">
+                            <form action="/rate/<%= result.mal_id %>/<%= result.title %>/<%= encodeURIComponent(result.images.jpg.image_url) %>" method="POST">
                             <span>
                                 <select name="rating" id="rating">
                                     <option value="1">1</option>
@@ -183,7 +185,7 @@
                             <div>
                             <span>
                                 <p>User:
-                                    <a href="/profile/review.user"><%= review.user %></a>
+                                    <a href="/profile/<%= review.user %>"><%= review.user %></a>
                                 </p>
                                 <p>
                                     Posted: <%= review.date.toString().substring(0,15) %> 

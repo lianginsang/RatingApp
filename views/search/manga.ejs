@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <link rel="stylesheet" href="../../mainStyle.css">
+        <link rel="stylesheet" href="../../navbarstyle.css">
+        <link rel="stylesheet" href="../../searchStyle.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">    
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Tispur</title>
+        <link rel="icon" type="image/png" href="../favicon.png">
+    </head>
+    <body>
+        <%- include('../partials/navbar') %>
+            <section id="movieResult">
+                <ul>
+                    <% if(AnimeManga.request_cached='true' ){ %>
+                        <% for(let result of AnimeManga){ %>
+                            <% if(result.published.from==null){ %>
+                                <li>
+                                    <div>
+                                    <p>
+                                        <img src="<%= result.images.jpg.image_url %> " alt="N/A">
+                                    </p>
+                                    </div>
+                                    <div>
+                                        <p>
+                                            <strong>
+                                                <%= result.title %> (Has Not Aired Yet)
+                                            </strong>
+                                        </p>
+                                        <p id="button">
+                                            <a href="<%= result.url %> ">
+                                                More Details
+                                            </a>
+                                        </p>
+                                    </div>
+                                </li>
+                                <%} else {%>
+                                    <% if(result.published.from.substring(0,4)===year||year=='' ) {%>
+                                        <li>
+                                            <div>
+                                            <p>
+                                                <img src="<%= result.images.jpg.image_url %> " alt="N/A">
+                                            </p>
+                                            </div>
+                                            <div>
+                                                <p>
+                                                    <strong>
+                                                        <%= result.title %>
+                                                    </strong>
+                                                </p>
+                                                <p>
+                                                    <strong>Aired: </strong>
+                                                    <%= result.published.from.substring(0,4) %>
+                                                        -
+                                                        <% if(result.published.to==null){%>
+                                                            Still Airing
+                                                            <% }else if(result.published.to.substring(0, 4)!=null){ %>
+                                                                <%= result.published.to.substring(0, 4) %>
+                                                                    <% } %>
+                                                </p>
+                                                <p>
+                                                    <% if(result.type=='Manga' ){ %>
+                                                        <strong>Volumes: </strong>
+                                                        <%= result.volumes %>
+                                                            <strong>Chapters: </strong>
+                                                            <%= result.chapters %>
+                                                                <% }else if(result.type=='TV'
+                                                                    ||'OVA'||'Music'||'Movie'){ %>
+                                                                    <strong>Episodes: </strong>
+                                                                    <%= result.episodes %>
+                                                                        <% }else{ %>
+                                                                            Not Anime or Manga
+                                                                            <% } %>
+                                                </p>
+                                                <p>
+                                                    <strong>Mal Score: </strong>
+                                                    <%= result.score %>
+                                                </p>
+                                                <% if(result.synopsis !== null){ %>
+                                                    <p id="summary">
+                                                        <strong>Summary: </strong>
+                                                        <%= result.synopsis %>
+                                                    </p>
+                                                    <p id="summaryMobile">
+                                                        <strong>Summary: </strong>
+                                                        <%= result.synopsis.toString().substring(0, 40) %>...
+                                                    </p>
+                                                <% } %>
+                                                <p class="button">
+                                                    <% if(result.type=='Manga' ){ %>
+                                                    <a href="/search/<%= result.mal_id %>/manga/<%= result.title %>">
+                                                        More Details
+                                                    </a>
+                                                        <% }else if(result.type=='TV'||'OVA'||'Music'||'Movie'){ %>
+                                                    <a href="/search/<%= result.mal_id %>/anime/<%= result.title %>">
+                                                        More Details
+                                                    </a>
+                                                                    <% } %>
+                                                </p>
+                                            </div>
+                                        </li>
+                                        <% } %>
+                                            <% } %>
+                                                <% } %>
+                </ul>
+                <% }else{ %>
+                    <li>No Result For That Search</li>
+                    <% } %>
+            </section>
+    </body>
+    <footer>
+            <script src="../../script.js"></script>
+        </footer>
+
+</html>

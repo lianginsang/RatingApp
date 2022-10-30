@@ -2,15 +2,6 @@
 <html lang="en">
 
     <head>
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-MQCW3Y2V0X"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-MQCW3Y2V0X');
-</script>
         <link rel="stylesheet" href="../../mainStyle.css">
         <link rel="stylesheet" href="../../navbarstyle.css">
         <link rel="stylesheet" href="../../searchStyle.css">
@@ -26,12 +17,12 @@
             <section id="movieResult">
                 <ul>
                     <% if(AnimeManga.request_cached='true' ){ %>
-                        <% for(let result of AnimeManga.results){ %>
-                            <% if(result.start_date==null){ %>
+                        <% for(let result of AnimeManga){ %>
+                            <% if(result.aired.from==null){ %>
                                 <li>
                                     <div>
                                     <p>
-                                        <img src="<%= result.image_url %> " alt="N/A">
+                                        <img src="<%= result.images.jpg.image_url %> " alt="N/A">
                                     </p>
                                     </div>
                                     <div>
@@ -48,11 +39,11 @@
                                     </div>
                                 </li>
                                 <%} else {%>
-                                    <% if(result.start_date.substring(0,4)===year||year=='' ) {%>
+                                    <% if(result.aired.from.substring(0,4)===year||year=='' ) {%>
                                         <li>
                                             <div>
                                             <p>
-                                                <img src="<%= result.image_url %> " alt="N/A">
+                                                <img src="<%= result.images.jpg.image_url %> " alt="N/A">
                                             </p>
                                             </div>
                                             <div>
@@ -63,12 +54,12 @@
                                                 </p>
                                                 <p>
                                                     <strong>Aired: </strong>
-                                                    <%= result.start_date.substring(0,4) %>
+                                                    <%= result.aired.from.substring(0,4) %>
                                                         -
-                                                        <% if(result.end_date==null){%>
+                                                        <% if(result.aired.to==null){%>
                                                             Still Airing
-                                                            <% }else if(result.end_date.substring(0, 4)!=null){ %>
-                                                                <%= result.end_date.substring(0, 4) %>
+                                                            <% }else if(result.aired.to.substring(0, 4)!=null){ %>
+                                                                <%= result.aired.to.substring(0, 4) %>
                                                                     <% } %>
                                                 </p>
                                                 <p>
@@ -89,14 +80,16 @@
                                                     <strong>Mal Score: </strong>
                                                     <%= result.score %>
                                                 </p>
-                                                <p id="summary">
-                                                    <strong>Summary: </strong>
-                                                    <%= result.synopsis %>
-                                                </p>
-                                                <p id="summaryMobile">
-                                                    <strong>Summary: </strong>
-                                                    <%= result.synopsis.toString().substring(0, 40) %>...
-                                                </p>
+                                                <% if(result.synopsis !== null){ %>
+                                                    <p id="summary">
+                                                        <strong>Summary: </strong>
+                                                        <%= result.synopsis %>
+                                                    </p>
+                                                    <p id="summaryMobile">
+                                                        <strong>Summary: </strong>
+                                                        <%= result.synopsis.toString().substring(0, 40) %>...
+                                                    </p>
+                                                <% } %>
                                                 <p class="button">
                                                     <% if(result.type=='Manga' ){ %>
                                                     <a href="/search/<%= result.mal_id %>/manga/<%= result.title %>">

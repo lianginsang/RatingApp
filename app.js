@@ -155,9 +155,9 @@ let searchBookByID = (searchTerm, id) => {
 }
 //fetch from myanimelist unoffical api
 let searchAnimeManga = (searchTerm, mediaType) => {
-    return axios.request(`https://jikan1.p.rapidapi.com/search/${mediaType}/?type=${mediaType}&q=${searchTerm}&rapidapi-key=${process.env.rapidapiKey}`)
+    return axios.request(`https://api.jikan.moe/v4/${mediaType}/?q=${searchTerm}}`)
         .then(res => {
-            return res.data;
+            return res.data.data;
         }).catch(err => {
             console.log('error with searchAnimeManga');
             console.log(err);
@@ -369,11 +369,20 @@ app.post('/search', saveSearchType, (req, res, next) => {
                 console.log('error with app.post')
                 console.log(err)
             });
-    } else if (mediaType == 'anime' || 'manga') {
+    } else if (mediaType == 'anime') {
         searchAnimeManga(searchTerm, mediaType)
             .then(am => {
                 let AnimeManga = am
-                res.render('search/AnimeManga', { AnimeManga, year })
+                res.render('search/anime', { AnimeManga, year })
+            }).catch(err => {
+                console.log('error with app.post')
+                console.log(err)
+            });
+    } else if (mediaType == 'manga') {
+        searchAnimeManga(searchTerm, mediaType)
+            .then(am => {
+                let AnimeManga = am
+                res.render('search/manga', { AnimeManga, year })
             }).catch(err => {
                 console.log('error with app.post')
                 console.log(err)
@@ -437,7 +446,7 @@ app.get('/search/:id/:mediaType/:title', (req, res) => {
                 console.log('error with /search/:id')
                 console.log(err)
             });
-    } else if (mediaType == 'anime' || 'manga') {
+    } else if (mediaType == 'anime') {
         searchAnimeManga(title, mediaType)
             .then(async am => {
                 let reviewsMongoDB = await Review.find({ mediaID: id });
@@ -445,7 +454,20 @@ app.get('/search/:id/:mediaType/:title', (req, res) => {
                 const averageRating = rmf[0];
                 const reviews = rmf[1];
                 let AnimeManga = am
-                res.render('search/animeMangaInfo', { AnimeManga, id, reviews, averageRating, username })
+                res.render('search/animeInfo', { AnimeManga, id, reviews, averageRating, username })
+            }).catch(err => {
+                console.log('error with /search/:id')
+                console.log(err)
+            });
+    } else if (mediaType == 'manga') {
+        searchAnimeManga(title, mediaType)
+            .then(async am => {
+                let reviewsMongoDB = await Review.find({ mediaID: id });
+                let rmf = reviewsMongoFunction(reviewsMongoDB);
+                const averageRating = rmf[0];
+                const reviews = rmf[1];
+                let AnimeManga = am
+                res.render('search/mangaInfo', { AnimeManga, id, reviews, averageRating, username })
             }).catch(err => {
                 console.log('error with /search/:id')
                 console.log(err)
@@ -584,7 +606,7 @@ app.post('/rate/:id/:title/:image', isLoggedIn, validateReview, catchAsync(async
                 console.log('error with /search/:id')
                 console.log(err)
             });
-    } else if (mediaType == 'anime' || 'manga') {
+    } else if (mediaType == 'anime') {
         searchAnimeManga(title, mediaType)
             .then(async am => {
                 let reviewsMongoDB = await Review.find({ mediaID: id });
@@ -592,7 +614,20 @@ app.post('/rate/:id/:title/:image', isLoggedIn, validateReview, catchAsync(async
                 const averageRating = rmf[0];
                 const reviews = rmf[1];
                 let AnimeManga = am
-                res.render('search/animeMangaInfo', { AnimeManga, id, reviews, averageRating, username })
+                res.render('search/animeInfo', { AnimeManga, id, reviews, averageRating, username })
+            }).catch(err => {
+                console.log('error with /search/:id')
+                console.log(err)
+            });
+    } else if (mediaType == 'manga') {
+        searchAnimeManga(title, mediaType)
+            .then(async am => {
+                let reviewsMongoDB = await Review.find({ mediaID: id });
+                let rmf = reviewsMongoFunction(reviewsMongoDB);
+                const averageRating = rmf[0];
+                const reviews = rmf[1];
+                let AnimeManga = am
+                res.render('search/mangaInfo', { AnimeManga, id, reviews, averageRating, username })
             }).catch(err => {
                 console.log('error with /search/:id')
                 console.log(err)
@@ -671,7 +706,7 @@ app.post('/edit/:id/:title/:image/:mediaType?', isLoggedIn, validateReview, catc
                 console.log('error with /search/:id')
                 console.log(err)
             });
-    } else if (mediaType == 'anime' || 'manga') {
+    } else if (mediaType == 'anime') {
         searchAnimeManga(title, mediaType)
             .then(async am => {
                 let reviewsMongoDB = await Review.find({ mediaID: id });
@@ -679,7 +714,20 @@ app.post('/edit/:id/:title/:image/:mediaType?', isLoggedIn, validateReview, catc
                 const averageRating = rmf[0];
                 const reviews = rmf[1];
                 let AnimeManga = am
-                res.render('search/animeMangaInfo', { AnimeManga, id, reviews, averageRating, username })
+                res.render('search/animeInfo', { AnimeManga, id, reviews, averageRating, username })
+            }).catch(err => {
+                console.log('error with /search/:id')
+                console.log(err)
+            });
+    } else if (mediaType == 'manga') {
+        searchAnimeManga(title, mediaType)
+            .then(async am => {
+                let reviewsMongoDB = await Review.find({ mediaID: id });
+                let rmf = reviewsMongoFunction(reviewsMongoDB);
+                const averageRating = rmf[0];
+                const reviews = rmf[1];
+                let AnimeManga = am
+                res.render('search/mangaInfo', { AnimeManga, id, reviews, averageRating, username })
             }).catch(err => {
                 console.log('error with /search/:id')
                 console.log(err)
@@ -725,7 +773,7 @@ app.delete('/delete/:id/:title/:mediaType/:user?', isLoggedIn, catchAsync(async 
                 console.log('error with /search/:id')
                 console.log(err)
             });
-    } else if (mediaType == 'anime' || 'manga') {
+    } else if (mediaType == 'anime') {
         searchAnimeManga(title, mediaType)
             .then(async am => {
                 let reviewsMongoDB = await Review.find({ mediaID: id });
@@ -733,7 +781,20 @@ app.delete('/delete/:id/:title/:mediaType/:user?', isLoggedIn, catchAsync(async 
                 const averageRating = rmf[0];
                 const reviews = rmf[1];
                 let AnimeManga = am
-                res.render('search/animeMangaInfo', { AnimeManga, id, reviews, averageRating, username })
+                res.render('search/animeInfo', { AnimeManga, id, reviews, averageRating, username })
+            }).catch(err => {
+                console.log('error with /search/:id')
+                console.log(err)
+            });
+    } else if (mediaType == 'manga') {
+        searchAnimeManga(title, mediaType)
+            .then(async am => {
+                let reviewsMongoDB = await Review.find({ mediaID: id });
+                let rmf = reviewsMongoFunction(reviewsMongoDB);
+                const averageRating = rmf[0];
+                const reviews = rmf[1];
+                let AnimeManga = am
+                res.render('search/mangaInfo', { AnimeManga, id, reviews, averageRating, username })
             }).catch(err => {
                 console.log('error with /search/:id')
                 console.log(err)

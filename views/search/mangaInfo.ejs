@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<%= success %>
+<%= error %>
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MQCW3Y2V0X"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-MQCW3Y2V0X');
+</script>
+        <link rel="stylesheet" href="/../../mainStyle.css">
+        <link rel="stylesheet" href="/../../navbarstyle.css">
+        <link rel="stylesheet" href="/../../infoStyle.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">    
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Tispur</title>
+        <link rel="icon" type="image/png" href="/../favicon.png">
+</head>
+        <body>
+            <%- include('../partials/navbar') %>
+                <section id="movieDetails">
+                    <% if(AnimeManga.request_cached='true' ){ %>
+                        <% for(let result of AnimeManga){ %>
+                            <% if(result.published.from==null && result.mal_id==id){ %>
+                                <section id="result">
+                                <div>
+                                    <img src="<%= result.images.jpg.image_url %> " alt="N/A">
+                                </div>
+                                <div>
+                                    <p>
+                                        <strong>
+                                            <%= result.title %> (Has Not Aired Yet)
+                                        </strong>
+                                    </p>
+                                    <p>
+                                        <a href="<%= result.url %> ">
+                                            More Details
+                                        </a>
+                                    </p>
+                                </div>
+                            </section>
+                                <%} else {%>
+                                    <% if( result.mal_id==id ) {%>
+                                        <section id="result">
+                                        <div>
+                                            <img src="<%= result.images.jpg.image_url %> " alt="N/A">
+                                        </div>
+                                        <div>
+                                            <p>
+                                                <strong>
+                                                    <%= result.title %>
+                                                </strong>
+                                            </p>
+                                            <p>
+                                                <strong>Aired: </strong>
+                                                <%= result.published.from.substring(0,4) %>
+                                                    -
+                                                    <% if(result.published.to==null){%>
+                                                        Still Airing
+                                                        <% }else if(result.published.to.substring(0,4)!=null){ %>
+                                                            <%= result.published.to.substring(0,4) %>
+                                                                <% } %>
+                                            </p>
+                                            <p>
+                                                <% if(result.type=='Manga' ){ %>
+                                                    <% if(result.published.to==null) {%>
+                                                        <strong>
+                                                            Volumes:
+                                                        </strong>Not Concluded<br>
+                                                        <strong>
+                                                            Chapters:
+                                                        </strong>Not Concluded
+                                                        <% }else{ %>
+                                                            <strong>Volumes: </strong>
+                                                            <%= result.volumes %>
+                                                                <strong>Chapters: </strong>
+                                                                <%= result.chapters %>
+                                                                    <% } %>
+                                                                        <% }else if(result.type=='TV' ||'OVA'||'Music'||'Movie'){ %>
+                                                                            <% if(result.published.to==null) {%>
+                                                                                <strong>
+                                                                                    Episodes:
+                                                                                </strong>Not Concluded
+                                                                                <% }else{ %>
+                                                                                    <strong>Episodes: </strong>
+                                                                                    <%= result.episodes %>
+                                                                                        <% } %>
+                                                                                            <% }else{ %>
+                                                                                                Not Anime or Manga
+                                                                                                <% } %>
+
+                                            </p>
+                                            <p>
+                                                <strong>
+                                                    Critics' Ratings:
+                                                </strong>
+                                            <ul>
+                                                <li>
+                                                    <strong>
+                                                        Re-View :
+                                                    </strong>
+                                                    <% if(isNaN(averageRating)==false){ %>
+                                                        <%= averageRating %>/10
+                                                            <%}else{ %>
+                                                                --/10
+                                                                <% } %>
+                                                </li>
+                                                <li>
+                                                    <strong>Mal: </strong>
+                                                    <%= result.score %>/10
+                                                </li>
+                                            </ul>
+                                            </p>
+                                            <% if(result.synopsis !== null){ %>
+                                                <p>
+                                                    <strong>Summary: </strong>
+                                                    <%= result.synopsis %>
+                                                </p>
+                                            <% } %>
+                                            <p>
+                                                <% if(result.type=='Manga' ){ %>
+                                                    <form action="/submit/<%= result.mal_id %>/<%= result.title %>/<%= encodeURIComponent(result.images.jpg.image_url) %>/manga">
+                                                <% }else if(result.type=='TV' ||'OVA'||'Music'||'Movie'){ %>
+                                                    <form action="/submit/<%= result.mal_id %>/<%= result.title %>/<%= encodeURIComponent(result.images.jpg.image_url) %>/anime">
+                                                <% } %> 
+                                                    <button>
+                                                        Make Post
+                                                    </button>
+                                                </form>   
+                                            </p>
+                                            <p >                
+                                                <a href="<%= result.url %> " class="button">
+                                                    MAL Link
+                                                </a>
+                                            </p> 
+                                        </div>
+                                        <% } %>
+                                            <% } %>
+                                                <% } %>
+                                                    <% }else{ %>
+                                                        <li>No Result For That Search</li>
+                                                        <% } %>
+                                        </section>
+                <section id="review">
+                        <div>
+                            <strong>Rate:</strong>
+                            <% for(let result of AnimeManga){ %>
+                            <% if( result.mal_id==id ) {%>
+                            <form action="/rate/<%= result.mal_id %>/<%= result.title %>/<%= encodeURIComponent(result.images.jpg.image_url) %>" method="POST">
+                            <span>
+                                <select name="rating" id="rating">
+                                    <option value="1">1</option>
+                                    <option value="1.5">1.5</option>
+                                    <option value="2">2</option>
+                                    <option value="2.5">2.5</option>
+                                    <option value="3">3</option>
+                                    <option value="3.5">3.5</option>
+                                    <option value="4">4</option>
+                                    <option value="4.5">4.5</option>
+                                    <option value="5">5</option>
+                                    <option value="5.5">5.5</option>
+                                    <option value="6">6</option>
+                                    <option value="6.5">6.5</option>
+                                    <option value="7">7</option>
+                                    <option value="7.5">7.5</option>
+                                    <option value="8">8</option>
+                                    <option value="8.5">8.5</option>
+                                    <option value="9">9</option>
+                                    <option value="9.5">9.5</option>
+                                    <option value="10">10</option>
+                                </select>
+                                <textarea name="review" id="review" cols="100" rows="2" placeholder="Type your review here..." required></textarea>
+                            </span>
+                                <button>Submit</button>
+                            </form>
+                        </div>
+                    <% if(reviews!='No Reviews Yet, Be the first to write a review for this title.'){ %>
+                        <% for(review of reviews[0].users.reverse()){ %>
+                            <div>
+                            <span>
+                                <p>User:
+                                    <a href="/profile/<%= review.user %>"><%= review.user %></a>
+                                </p>
+                                <p>
+                                    Posted: <%= review.date.toString().substring(0,15) %> 
+                                </p>
+                            </span>
+                            <p>Rating:
+                                <%= review.rating %>
+                            </p>
+                            <p>Review:
+                                <%= review.review %> 
+                            </p>
+                            <% if(username == review.user){ %> 
+                                <p>
+                                    <% if(result.type == 'Manga'){ %> 
+                                    <form action="/delete/<%= id %>/<%= result.title %>/manga?_method=DELETE" method="POST">
+                                    <% }else if(result.type == 'TV' ||'OVA'||'Music'||'Movie'){ %> 
+                                    <form action="/delete/<%= id %>/<%= result.title %>/anime?_method=DELETE" method="POST">   
+                                    <% } %> 
+                                        <button>DELETE</button>
+                                    </form>
+                                </p>
+                            <% } %>
+                        </div>
+                            <% } %>
+                                <% }else{ %>
+                                    <div>
+                                    <p>
+                                        <%= reviews %>
+                                    </p>
+                                    </div>
+                                    <% } %>
+                                    <% } %>
+                                    <% } %> 
+                </section>
+                </section>
+        </body>
+        <footer>
+            <script src="../../script.js"></script>
+        </footer>
+</html>

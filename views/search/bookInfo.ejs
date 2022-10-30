@@ -84,7 +84,7 @@
                             <%= result.volumeInfo.description %>
                         </p>
                         <p>
-                                <form action="/submit/<%= id %>/<%= result.volumeInfo.title %>/<%= encodeURIComponent(result.volumeInfo.imageLinks.thumbnail) %>/book">
+                                <form action="/submit/<%= id %>/<%= result.volumeInfo.title %>/https<%= encodeURIComponent(result.volumeInfo.imageLinks.thumbnail.toString().substring(4)) %>/book">
                                     <button>
                                         Make Post
                                     </button>
@@ -101,7 +101,7 @@
                                         <div>
                                             <strong>Rate:</strong>
                                             <% if(result.volumeInfo.imageLinks != undefined || null) {%> 
-                                                <form action="/rate/<%= result.id %>/<%= result.volumeInfo.title %>/<%= encodeURIComponent(result.volumeInfo.imageLinks.thumbnail) %>" method="POST">
+                                                <form action="/rate/<%= result.id %>/<%= result.volumeInfo.title %>/https<%= encodeURIComponent(result.volumeInfo.imageLinks.thumbnail.toString().substring(4)) %>" method="POST">
                                                 <% }else{ %> 
                                                     <form action="/rate/<%= result.id %>/<%= result.volumeInfo.title %>/<%= 'No Cover' %>  " method="POST">
                                                         <% } %> 
@@ -138,7 +138,7 @@
                             <div>
                                 <span>
                                     <p>User:
-                                        <a href="/profile/review.user"><%= review.user %></a>
+                                        <a href="/profile/<%= review.user %>"><%= review.user %></a>
                                     </p>
                                     <p>
                                         Posted: <%= review.date.toString().substring(0,15) %> 
