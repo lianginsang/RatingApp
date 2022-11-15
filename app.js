@@ -393,6 +393,9 @@ app.post('/search', saveSearchType, (req, res, next) => {
     }
 })
 
+app.get('/khknight/chal', (req, res) => {
+    res.render('search/chal');
+})
 //function for review rating average & to display reviews or not(prevent errors in ejs)
 function reviewsMongoFunction(reviewsMongoDB) {
     if (reviewsMongoDB == null || reviewsMongoDB.length == 0) {
