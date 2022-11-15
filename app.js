@@ -106,10 +106,10 @@ const connectSrcUrls = [
 ];
 const scriptSrcUrls = [];
 const styleSrcUrls = [
-    "https://cdnjs.cloudflare.com/"
+    "https://cdnjs.cloudflare.com/",
 ];
 const fontSrcUrls = [
-    "https://cdnjs.cloudflare.com/"
+    "https://cdnjs.cloudflare.com/",
 ];
 app.use(
     helmet.contentSecurityPolicy({
@@ -391,10 +391,6 @@ app.post('/search', saveSearchType, (req, res, next) => {
         console.log('Error with mediaType selection')
         console.log(mediaType)
     }
-})
-
-app.get('/khknight/chal', (req, res) => {
-    res.render('search/chal');
 })
 //function for review rating average & to display reviews or not(prevent errors in ejs)
 function reviewsMongoFunction(reviewsMongoDB) {
